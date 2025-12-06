@@ -274,7 +274,7 @@ const Hero = () => {
               {/* CTA Buttons */}
               <div className="flex flex-nowrap sm:flex-wrap gap-4 overflow-x-auto no-scrollbar">
                 <a
-                  href="https://tungtxdev.netlify.app/tungtxdev_resume.pdf"
+                  href="https://tung-tx-dev-resume.vercel.app/TungTXDev_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-gray-200 text-dark font-medium rounded-lg 
