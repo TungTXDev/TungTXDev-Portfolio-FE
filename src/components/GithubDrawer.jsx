@@ -56,7 +56,7 @@ const colorForCount = (count) => {
 };
 
 /* ---------- Heatmap Component ---------- */
-function ContributionsHeatmap({ calendar }) {
+function ContributionsHeatmap({ calendar, repositoryCount }) {
   // visual sizing
   const CELL = 12; // px
   const GAP = 4; // px
@@ -124,16 +124,38 @@ function ContributionsHeatmap({ calendar }) {
 
   return (
     <div>
-      <div className="flex items-center gap-3 mb-4">
-        <img
-          src="/images/avatar.png"
-          alt="Profile"
-          className="w-10 h-10 rounded-full object-cover"
-          style={{ objectPosition: "center 15%" }}
-        />
-        <div>
-          <p className="text-white font-semibold text-lg">TungTXDev</p>
-          <p className="text-gray-400 text-sm">Tạ Xuân Tùng</p>
+      <div className="flex items-center justify-between mb-4">
+        {/* Avatar + Name */}
+        <div className="flex items-center gap-3">
+          <img
+            src="/images/avatar.png"
+            alt="Profile"
+            className="w-10 h-10 rounded-full object-cover"
+            style={{ objectPosition: "center 15%" }}
+          />
+          <div>
+            <p className="text-white font-semibold text-lg">TungTXDev</p>
+            <p className="text-gray-400 text-sm">Tạ Xuân Tùng</p>
+          </div>
+        </div>
+
+        {/* GitHub link + Repo count */}
+        <div className="text-right">
+          <div className="flex items-center gap-1">
+            <span>My GitHub:</span>
+            <a
+              href="https://github.com/TungTXDev"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#58a6ff] hover:underline font-semibold"
+            >
+              https://github.com/TungTXDev
+            </a>
+          </div>
+
+          <p className="text-gray-400 text-sm">
+            {repositoryCount || 0} repositories
+          </p>
         </div>
       </div>
 
@@ -290,7 +312,10 @@ const GithubDrawer = ({ isOpen, setIsOpen }) => {
           {data && (
             <div className="space-y-8">
               {/* Heatmap */}
-              <ContributionsHeatmap calendar={data.contributionCalendar} />
+              <ContributionsHeatmap
+                calendar={data.contributionCalendar}
+                repositoryCount={data.repositoryContributions?.nodes?.length}
+              />
 
               {/* Contribution activity */}
               <div>
