@@ -2,6 +2,23 @@
 import React, { useEffect, useMemo, useState } from "react";
 
 /* ---------- Helper Icons ---------- */
+const CloseIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={2}
+    stroke="currentColor"
+    className="w-6 h-6"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M6 18L18 6M6 6l12 12"
+    />
+  </svg>
+);
+
 const CommitIcon = () => (
   <svg
     aria-hidden="true"
@@ -29,26 +46,22 @@ const RepoIcon = () => (
 );
 
 /* ---------- Utilities for Heatmap ---------- */
-
-// Returns the Monday of the week for a given date
 const startOfWeekMonday = (d) => {
   const date = new Date(d);
-  const day = date.getDay(); // 0 Sun ... 6 Sat
-  const diff = day === 0 ? -6 : 1 - day; // shift so Monday is day 1
+  const day = date.getDay();
+  const diff = day === 0 ? -6 : 1 - day;
   date.setDate(date.getDate() + diff);
   date.setHours(0, 0, 0, 0);
   return date;
 };
 
-// Format date Y-M-D key
 const dateKey = (d) => {
   const dt = new Date(d);
   return dt.toISOString().slice(0, 10);
 };
 
-// Simple green scale approximate to GitHub (option 2)
 const colorForCount = (count) => {
-  if (!count || count === 0) return "#161b22"; // dark background for zero
+  if (!count || count === 0) return "#161b22";
   if (count <= 1) return "#9be9a8";
   if (count <= 3) return "#40c463";
   if (count <= 7) return "#30a14e";
@@ -57,11 +70,9 @@ const colorForCount = (count) => {
 
 /* ---------- Heatmap Component ---------- */
 function ContributionsHeatmap({ calendar, repositoryCount }) {
-  // visual sizing
-  const CELL = 12; // px
-  const GAP = 4; // px
+  const CELL = 12;
+  const GAP = 4;
 
-  // Build a map from API calendar days (date-> {count, color})
   const contributionsByDate = useMemo(() => {
     const map = {};
     if (!calendar?.weeks) return map;
@@ -77,15 +88,13 @@ function ContributionsHeatmap({ calendar, repositoryCount }) {
     return map;
   }, [calendar]);
 
-  // Build 52 weeks starting from the Monday of (today - 51*7 days)
   const { weeksGrid, monthLabels } = useMemo(() => {
     const resultWeeks = [];
     const today = new Date();
     const startDate = new Date(today);
-    startDate.setDate(startDate.getDate() - 51 * 7); // go back 51 weeks
+    startDate.setDate(startDate.getDate() - 51 * 7);
     const startMonday = startOfWeekMonday(startDate);
 
-    // For 52 weeks
     for (let w = 0; w < 52; w++) {
       const week = [];
       for (let d = 0; d < 7; d++) {
@@ -96,20 +105,16 @@ function ContributionsHeatmap({ calendar, repositoryCount }) {
       resultWeeks.push(week);
     }
 
-    // Month labels: if a week contains the 1st of a month, use that week's index;
-    // fallback: when the month changes compared to previous week, mark it.
     const monthPos = {};
     let prevMonth = null;
     resultWeeks.forEach((week, idx) => {
-      // find the first valid day in week (Mon->Sun) to decide month label position
       const firstDay = week[0];
-      const m = firstDay.getMonth(); // 0..11
+      const m = firstDay.getMonth();
       if (prevMonth === null) {
         monthPos[firstDay.toLocaleString("en-US", { month: "short" })] = idx;
         prevMonth = m;
         return;
       }
-      // if this week's Monday month differs from previous, label it
       if (m !== prevMonth) {
         monthPos[firstDay.toLocaleString("en-US", { month: "short" })] = idx;
         prevMonth = m;
@@ -119,7 +124,6 @@ function ContributionsHeatmap({ calendar, repositoryCount }) {
     return { weeksGrid: resultWeeks, monthLabels: monthPos };
   }, [calendar]);
 
-  // weekday labels Mon..Sun (we'll show a few like GitHub: Mon, Wed, Fri)
   const weekdayLabels = ["Mon", "Wed", "Fri"];
 
   return (
@@ -141,21 +145,18 @@ function ContributionsHeatmap({ calendar, repositoryCount }) {
 
         {/* GitHub link + Repo count */}
         <div className="text-right">
-          <div className="flex items-center gap-1">
-            <span>My GitHub:</span>
+          <div className="flex items-center gap-1 text-sm md:text-base">
             <a
               href="https://github.com/TungTXDev"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#58a6ff] hover:underline font-semibold"
+              className="text-[#58a6ff] hover:underline font-semibold truncate"
             >
               https://github.com/TungTXDev
             </a>
           </div>
 
-          <p className="text-gray-400 text-sm">
-            {repositoryCount || 0} repositories
-          </p>
+          <h4 className="text-white">{repositoryCount || 0} repositories</h4>
         </div>
       </div>
 
@@ -174,13 +175,11 @@ function ContributionsHeatmap({ calendar, repositoryCount }) {
         </p>
 
         <div className="relative overflow-x-auto pb-4 thin-scroll">
-          {/* Month labels */}
           <div className="relative h-4">
-            {/* We'll place labels absolutely by left offset */}
             {Object.entries(monthLabels).map(([month, weekIndex]) => (
               <div
                 key={month}
-                style={{ left: `${weekIndex * (CELL + GAP) + 48}px` }} // +48 to account for weekday labels column
+                style={{ left: `${weekIndex * (CELL + GAP) + 48}px` }}
                 className="absolute top-0 text-[11px] text-gray-400"
               >
                 {month}
@@ -189,7 +188,6 @@ function ContributionsHeatmap({ calendar, repositoryCount }) {
           </div>
 
           <div className="flex mt-2">
-            {/* weekday labels column */}
             <div className="flex flex-col justify-between mr-3 text-[10px] text-gray-400 h-[7 * (12 + 4)px]">
               {weekdayLabels.map((w) => (
                 <div key={w} className="h-3 leading-3">
@@ -198,7 +196,6 @@ function ContributionsHeatmap({ calendar, repositoryCount }) {
               ))}
             </div>
 
-            {/* weeks columns */}
             <div className="flex gap-[4px]">
               {weeksGrid.map((week, wi) => (
                 <div key={wi} className="flex flex-col gap-[4px]">
@@ -207,8 +204,6 @@ function ContributionsHeatmap({ calendar, repositoryCount }) {
                     const entry = contributionsByDate[key];
                     const count = entry?.count ?? 0;
                     const color = entry?.color ?? colorForCount(count);
-
-                    // If future date, render transparent cell
                     const isFuture = d > new Date();
 
                     return (
@@ -242,10 +237,13 @@ const GithubDrawer = ({ isOpen, setIsOpen }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // States to control "Show more"
+  const [showAllCommits, setShowAllCommits] = useState(false);
+  const [showAllRepos, setShowAllRepos] = useState(false);
+
   const fetchContributions = async () => {
     try {
       setLoading(true);
-
       const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
       const response = await fetch(`${API_URL}/api/github/contributions`);
 
@@ -262,10 +260,14 @@ const GithubDrawer = ({ isOpen, setIsOpen }) => {
     }
   };
 
-  // useEffect gọi hàm fetch khi cần
   useEffect(() => {
     if (isOpen && !data) {
       fetchContributions();
+    }
+    // Reset "show more" states when drawer opens/closes
+    if (!isOpen) {
+      setShowAllCommits(false);
+      setShowAllRepos(false);
     }
   }, [isOpen, data]);
 
@@ -279,8 +281,16 @@ const GithubDrawer = ({ isOpen, setIsOpen }) => {
     return Math.max(...repos.map((r) => r.contributions.totalCount));
   };
 
+  // Helper variables for data slicing
+  const commitList = data?.commitContributionsByRepository || [];
+  const repoList = data?.repositoryContributions?.nodes || [];
+
+  const visibleCommits = showAllCommits ? commitList : commitList.slice(0, 5);
+  const visibleRepos = showAllRepos ? repoList : repoList.slice(0, 5);
+
   return (
     <>
+      {/* Overlay */}
       {isOpen && (
         <div
           className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
@@ -288,6 +298,7 @@ const GithubDrawer = ({ isOpen, setIsOpen }) => {
         />
       )}
 
+      {/* Drawer Container */}
       <div
         className={`fixed left-0 top-0 z-50 h-screen w-full md:w-1/2 bg-[#0d1117] text-[#c9d1d9] shadow-2xl transition-transform duration-300 ease-in-out flex flex-col ${
           isOpen ? "translate-x-0" : "-translate-x-full"
@@ -300,10 +311,18 @@ const GithubDrawer = ({ isOpen, setIsOpen }) => {
           <span className="text-xl font-bold">{isOpen ? "❮" : "❯"}</span>
         </button>
 
-        <div className="h-full overflow-y-auto p-8 custom-scrollbar thin-scroll">
-          <h2 className="mb-6 border-b border-gray-700 pb-4 text-2xl font-bold text-white">
-            GitHub Activity
-          </h2>
+        <div className="h-full overflow-y-auto p-8 custom-scrollbar thin-scroll relative">
+          {/* Header with Hide Button */}
+          <div className="flex items-center justify-between mb-6 border-b border-gray-700 pb-4">
+            <h2 className="text-2xl font-bold text-white">GitHub Activity</h2>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="text-gray-400 hover:text-white p-1 rounded-md hover:bg-gray-800/50 transition-colors"
+              title="Hide drawer"
+            >
+              <CloseIcon />
+            </button>
+          </div>
 
           {loading && (
             <div className="text-gray-400 animate-pulse">Loading...</div>
@@ -331,7 +350,7 @@ const GithubDrawer = ({ isOpen, setIsOpen }) => {
                 </div>
 
                 {/* Commits */}
-                {data.commitContributionsByRepository?.length > 0 && (
+                {commitList.length > 0 && (
                   <div className="relative pl-8 border-l-2 border-gray-700 pb-8">
                     <div className="absolute -left-4 top-0 p-1.5 bg-[#161b22] rounded-full border border-gray-700">
                       <CommitIcon />
@@ -340,17 +359,16 @@ const GithubDrawer = ({ isOpen, setIsOpen }) => {
                     <div className="flex justify-between items-center mb-3">
                       <h4 className="text-white">
                         Created{" "}
-                        {data.commitContributionsByRepository.reduce(
+                        {commitList.reduce(
                           (acc, curr) => acc + curr.contributions.totalCount,
                           0
                         )}{" "}
-                        commits in {data.commitContributionsByRepository.length}{" "}
-                        repositories
+                        commits in {commitList.length} repositories
                       </h4>
                     </div>
 
                     <ul className="space-y-3">
-                      {data.commitContributionsByRepository.map((repo, idx) => (
+                      {visibleCommits.map((repo, idx) => (
                         <li
                           key={idx}
                           className="flex items-center justify-between text-sm group"
@@ -373,9 +391,7 @@ const GithubDrawer = ({ isOpen, setIsOpen }) => {
                                 style={{
                                   width: `${
                                     (repo.contributions.totalCount /
-                                      getMaxCommitCount(
-                                        data.commitContributionsByRepository
-                                      )) *
+                                      getMaxCommitCount(commitList)) *
                                     100
                                   }%`,
                                   background: "#3fb950",
@@ -386,23 +402,36 @@ const GithubDrawer = ({ isOpen, setIsOpen }) => {
                         </li>
                       ))}
                     </ul>
+
+                    {/* Show More / Show Less Button for Commits */}
+                    {commitList.length > 5 && (
+                      <div className="w-full flex justify-end">
+                        <button
+                          onClick={() => setShowAllCommits(!showAllCommits)}
+                          className="mt-2 text-xs text-[#58a6ff] hover:underline font-medium focus:outline-none"
+                        >
+                          {showAllCommits
+                            ? "Show less"
+                            : `Show ${commitList.length - 5} more...`}
+                        </button>
+                      </div>
+                    )}
                   </div>
                 )}
 
                 {/* Repositories */}
-                {data.repositoryContributions?.nodes?.length > 0 && (
+                {repoList.length > 0 && (
                   <div className="relative pl-8 border-l-2 border-gray-700 pb-4">
                     <div className="absolute -left-4 top-0 p-1.5 bg-[#161b22] rounded-full border border-gray-700">
                       <RepoIcon />
                     </div>
 
                     <h4 className="text-white mb-3">
-                      Created {data.repositoryContributions.nodes.length}{" "}
-                      repositories
+                      Created {repoList.length} repositories
                     </h4>
 
                     <ul className="space-y-3">
-                      {data.repositoryContributions.nodes.map((node, idx) => (
+                      {visibleRepos.map((node, idx) => (
                         <li
                           key={idx}
                           className="flex items-center justify-between text-sm"
@@ -452,6 +481,20 @@ const GithubDrawer = ({ isOpen, setIsOpen }) => {
                         </li>
                       ))}
                     </ul>
+
+                    {/* Show More / Show Less Button for Repos */}
+                    {repoList.length > 5 && (
+                      <div className="w-full flex justify-end">
+                        <button
+                          onClick={() => setShowAllRepos(!showAllRepos)}
+                          className="mt-2 text-xs text-[#58a6ff] hover:underline font-medium focus:outline-none"
+                        >
+                          {showAllRepos
+                            ? "Show less"
+                            : `Show ${repoList.length - 5} more...`}
+                        </button>
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -461,7 +504,7 @@ const GithubDrawer = ({ isOpen, setIsOpen }) => {
                   rel="noopener noreferrer"
                 >
                   <button className="w-full py-1.5 mt-2 text-xs font-semibold text-[#58a6ff] border border-gray-700 rounded-md hover:bg-[#161b22] transition-colors">
-                    Show more activity
+                    View full information on GitHub
                   </button>
                 </a>
               </div>
