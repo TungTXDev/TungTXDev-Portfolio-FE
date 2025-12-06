@@ -1,24 +1,8 @@
 // GithubDrawer.jsx
 import React, { useEffect, useMemo, useState } from "react";
+import { X, Github } from "lucide-react";
 
 /* ---------- Helper Icons ---------- */
-const CloseIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={2}
-    stroke="currentColor"
-    className="w-6 h-6"
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M6 18L18 6M6 6l12 12"
-    />
-  </svg>
-);
-
 const CommitIcon = () => (
   <svg
     aria-hidden="true"
@@ -127,7 +111,7 @@ function ContributionsHeatmap({ calendar, repositoryCount }) {
   const weekdayLabels = ["Mon", "Wed", "Fri"];
 
   return (
-    <div>
+    <div className="space-y-4 mt-4">
       <div className="flex items-center justify-between mb-4">
         {/* Avatar + Name */}
         <div className="flex items-center gap-3">
@@ -209,9 +193,8 @@ function ContributionsHeatmap({ calendar, repositoryCount }) {
                     return (
                       <div
                         key={di}
-                        title={`${d.toLocaleDateString()} — ${count} contribution${
-                          count !== 1 ? "s" : ""
-                        }`}
+                        title={`${d.toLocaleDateString()} — ${count} contribution${count !== 1 ? "s" : ""
+                          }`}
                         className="rounded-sm"
                         style={{
                           width: `${CELL}px`,
@@ -300,27 +283,31 @@ const GithubDrawer = ({ isOpen, setIsOpen }) => {
 
       {/* Drawer Container */}
       <div
-        className={`fixed left-0 top-0 z-50 h-screen w-full md:w-1/2 bg-[#0d1117] text-[#c9d1d9] shadow-2xl transition-transform duration-300 ease-in-out flex flex-col ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed left-0 top-0 z-50 h-screen w-full md:w-1/2 bg-[#0d1117] text-[#c9d1d9] shadow-2xl transition-transform duration-300 ease-in-out flex flex-col ${isOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="absolute -right-10 top-1/2 flex h-24 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-r-xl border-y border-r border-gray-700 bg-[#0d1117] text-gray-400 shadow-md hover:text-white"
+          className="absolute -right-5 top-1/2 flex h-24 w-6 -translate-y-1/2 cursor-pointer items-center justify-center rounded-r-xl border-y border-r border-gray-700 bg-[#0d1117] text-gray-400 shadow-md hover:text-white"
         >
-          <span className="text-xl font-bold">{isOpen ? "❮" : "❯"}</span>
+          <span className="text-xl font-bold ml-0.5">{isOpen ? "❮" : "❯"}</span>
         </button>
 
-        <div className="h-full overflow-y-auto p-8 custom-scrollbar thin-scroll relative">
-          {/* Header with Hide Button */}
-          <div className="flex items-center justify-between mb-6 border-b border-gray-700 pb-4">
-            <h2 className="text-2xl font-bold text-white">GitHub Activity</h2>
+        <div className="h-full overflow-y-auto p-8 custom-scrollbar thin-scroll relative p-4 pr-5 pl-5 mt-10">
+          <div className="flex justify-between items-center sticky top-0 bg-[#0d1117] z-10 py-2 border-b border-gray-700">
+            <div className="flex items-center gap-3">
+              <Github className="w-5 h-5 text-white" />
+              <span className="text-white font-semibold text-sm md:text-base">
+                GitHub Stats
+              </span>
+            </div>
+
             <button
               onClick={() => setIsOpen(false)}
-              className="text-gray-400 hover:text-white p-1 rounded-md hover:bg-gray-800/50 transition-colors"
-              title="Hide drawer"
+              className="p-2 rounded-md hover:bg-gray-800/50 transition-colors flex items-center justify-center shadow-sm border border-gray-600"
+              title="Đóng drawer"
             >
-              <CloseIcon />
+              <X className="w-5 h-5 text-gray-400 hover:text-white" />
             </button>
           </div>
 
@@ -389,11 +376,10 @@ const GithubDrawer = ({ isOpen, setIsOpen }) => {
                               <div
                                 className="h-full"
                                 style={{
-                                  width: `${
-                                    (repo.contributions.totalCount /
-                                      getMaxCommitCount(commitList)) *
+                                  width: `${(repo.contributions.totalCount /
+                                    getMaxCommitCount(commitList)) *
                                     100
-                                  }%`,
+                                    }%`,
                                   background: "#3fb950",
                                 }}
                               />
