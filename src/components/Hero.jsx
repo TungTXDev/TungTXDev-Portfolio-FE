@@ -4,9 +4,19 @@ import TypewriterText from '@/components/TypewriterText'
 import { TypewriterProvider } from '@/contexts/TypewriterContext'
 import { useWeather } from '@/contexts/WeatherContext'
 import PacmanTech from '@/components/PacmanTech'
+import { useState, useEffect } from 'react'
 
 const Hero = () => {
   const { theme } = useWeather()
+  const [isFlipped, setIsFlipped] = useState(false)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsFlipped(prev => !prev)
+    }, 20000)
+
+    return () => clearInterval(interval)
+  }, [])
 
   const techIcons = [
     { name: 'JavaScript', icon: 'javascript/javascript-original.svg' },
@@ -309,13 +319,52 @@ const Hero = () => {
               {/* Orbit Container */}
               <div className="relative w-full max-w-[280px] aspect-square sm:max-w-[400px] md:max-w-[600px]">
                 {/* Central Avatar */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                  <div className="w-48 h-48 sm:w-72 sm:h-72 md:w-[432px] md:h-[432px] rounded-full bg-[#1e1e1e] flex items-center justify-center animate-glow overflow-hidden">
-                    <img
-                      src="/images/avatar.png"
-                      alt="Profile"
-                      className="w-full h-full object-contain scale-160 translate-y-22"
-                    />
+                <div
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 cursor-pointer"
+                  style={{ perspective: '1000px' }}
+                  onClick={() => setIsFlipped(!isFlipped)}
+                >
+                  <div
+                    className="w-48 h-48 sm:w-72 sm:h-72 md:w-[432px] md:h-[432px] rounded-full relative"
+                    style={{
+                      transformStyle: 'preserve-3d',
+                      transition: 'transform 0.6s',
+                      transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+                    }}
+                  >
+                    {/* Front Face */}
+                    <div
+                      className="absolute inset-0 w-full h-full rounded-full bg-[#1e1e1e] flex items-center justify-center animate-glow overflow-hidden"
+                      style={{
+                        backfaceVisibility: 'hidden',
+                      }}
+                    >
+                      <img
+                        src="/images/avatar.png"
+                        alt="Profile"
+                        className="w-full h-full object-contain scale-[1.6] translate-y-[42px] sm:translate-y-[88px]"
+                      />
+
+                    </div>
+
+                    {/* Back Face */}
+                    <div
+                      className="absolute inset-0 w-full h-full rounded-full bg-[#1e1e1e] flex items-center justify-center animate-glow overflow-hidden"
+                      style={{
+                        backfaceVisibility: 'hidden',
+                        transform: 'rotateY(180deg)',
+                      }}
+                    >
+                      <img
+                        src="/images/minifigure.png"
+                        alt="Minifigure"
+                        className="w-full h-full object-contain scale-110 translate-y-3"
+                        style={{
+                          transform: `scale(1.1) translateX(${window.innerWidth < 640 ? -9 : -18
+                            }px)`
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
 

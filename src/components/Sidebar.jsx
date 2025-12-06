@@ -11,18 +11,29 @@ const Sidebar = ({ activeSection, onNavigate }) => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#1e1e1e]/95 backdrop-blur-sm border-b border-white/10">
+
       <div className="max-w-7xl mx-auto px-6 py-4">
+
+
         <div className="flex items-center justify-between">
           {/* Logo/Brand */}
-          <div className="flex items-center gap-3">
-            <div className="flex gap-2">
-              <div className="w-3 h-3 rounded-full bg-[#ff5f57]"></div>
-              <div className="w-3 h-3 rounded-full bg-[#febc2e]"></div>
-              <div className="w-3 h-3 rounded-full bg-[#28c840]"></div>
+
+          <div className="flex items-center gap-4 ml-20">
+            <img
+              src="/images/alf_logo_transparent.png"
+              alt="alf_logo_transparent"
+              className="w-9 h-9 object-contain scale-500 "
+            />
+            {/* <div className="flex items-center gap-3">
+              <div className="flex gap-2">
+                <div className="w-3 h-3 rounded-full bg-[#ff5f57]"></div>
+                <div className="w-3 h-3 rounded-full bg-[#febc2e]"></div>
+                <div className="w-3 h-3 rounded-full bg-[#28c840]"></div>
+              </div>
             </div>
-            <h1 className="text-xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-              TungTXDev Portfolio
-            </h1>
+            <h1 className="text-lg font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent whitespace-nowrap">
+              Tung TXDev Portfolio
+            </h1> */}
           </div>
 
           {/* Navigation */}
