@@ -1,61 +1,76 @@
-import { useState, useEffect } from 'react'
-import Sidebar from '@/components/Sidebar'
-import MobileNav from '@/components/MobileNav'
-import Hero from '@/components/Hero'
-import Introduce from '@/components/Introduce'
-import Skills from '@/components/Skills'
-import Projects from '@/components/Projects'
-import Experience from '@/components/Experience'
-import Education from '@/components/Education'
-import Contact from '@/components/Contact'
-import CodeDecorations from '@/components/CodeDecorations'
-import VisitorCounter from '@/components/VisitorCounter'
-import ScrollToTop from '@/components/ScrollToTop'
-import ScrollReveal from '@/components/ScrollReveal'
-import WeatherBackground from '@/components/WeatherBackground'
-import GameButton from '@/components/GameButton'
-import { WeatherProvider } from '@/contexts/WeatherContext'
-import ChatBot from '@/components/ChatBot'
+import { useState, useEffect } from "react";
+import Sidebar from "@/components/Sidebar";
+import MobileNav from "@/components/MobileNav";
+import Hero from "@/components/Hero";
+import Introduce from "@/components/Introduce";
+import Skills from "@/components/Skills";
+import Projects from "@/components/Projects";
+import Experience from "@/components/Experience";
+import Education from "@/components/Education";
+import Contact from "@/components/Contact";
+import CodeDecorations from "@/components/CodeDecorations";
+import VisitorCounter from "@/components/VisitorCounter";
+import ScrollToTop from "@/components/ScrollToTop";
+import ScrollReveal from "@/components/ScrollReveal";
+import WeatherBackground from "@/components/WeatherBackground";
+import GameButton from "@/components/GameButton";
+import { WeatherProvider } from "@/contexts/WeatherContext";
+import ChatBot from "@/components/ChatBot";
+import GithubDrawer from "./components/GithubDrawer";
 
 function App() {
-  const [activeSection, setActiveSection] = useState('hero')
+  const [activeSection, setActiveSection] = useState("hero");
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleNavigate = (sectionId) => {
-    setActiveSection(sectionId)
-    const element = document.getElementById(sectionId)
+    setActiveSection(sectionId);
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['hero', 'introduce', 'experience', 'projects', 'education', 'skills', 'contact']
-      const scrollPosition = window.scrollY + 100
+      const sections = [
+        "hero",
+        "introduce",
+        "experience",
+        "projects",
+        "education",
+        "skills",
+        "contact",
+      ];
+      const scrollPosition = window.scrollY + 100;
 
       for (const sectionId of sections) {
-        const element = document.getElementById(sectionId)
+        const element = document.getElementById(sectionId);
         if (element) {
-          const { offsetTop, offsetHeight } = element
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(sectionId)
-            break
+          const { offsetTop, offsetHeight } = element;
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
+            setActiveSection(sectionId);
+            break;
           }
         }
       }
-    }
+    };
 
-    window.addEventListener('scroll', handleScroll)
-    handleScroll() // Call once on mount
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Call once on mount
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <WeatherProvider>
       <WeatherBackground>
         <div className="min-h-screen relative">
           {/* Scroll Monkey - Fixed left column */}
-          <ChatBot />
+          <GithubDrawer isOpen={isDrawerOpen} setIsOpen={setIsDrawerOpen} />
+
+          <ChatBot isDrawerOpen={isDrawerOpen} />
 
           {/* VS Code Background */}
           <CodeDecorations />
@@ -64,7 +79,10 @@ function App() {
           <Sidebar activeSection={activeSection} onNavigate={handleNavigate} />
 
           {/* Mobile Navigation */}
-          <MobileNav activeSection={activeSection} onNavigate={handleNavigate} />
+          <MobileNav
+            activeSection={activeSection}
+            onNavigate={handleNavigate}
+          />
 
           {/* Main Content - Add left padding for monkey column on desktop */}
           <main className="pt-12 md:pl-24">
@@ -102,7 +120,7 @@ function App() {
         </div>
       </WeatherBackground>
     </WeatherProvider>
-  )
+  );
 }
 
-export default App
+export default App;

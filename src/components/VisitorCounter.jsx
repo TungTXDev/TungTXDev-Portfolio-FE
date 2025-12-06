@@ -11,7 +11,7 @@ const VisitorCounter = () => {
     const fetchVisitorCount = async () => {
       try {
         const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
-        const response = await fetch(`${API_URL}/api/visitor-count`)
+        const response = await fetch(`${API_URL}/api/ga/visitor-count`)
 
         if (!response.ok) {
           throw new Error('Failed to fetch')

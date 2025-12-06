@@ -10,7 +10,7 @@ const VisitorCounter = () => {
         // Lấy số lượng visitors từ API backend
         const fetchVisitorCount = async () => {
             try {
-                const response = await fetch('/api/visitor-count')
+                const response = await fetch('/api/ga/visitor-count')
                 const data = await response.json()
                 setTargetCount(data.count)
                 setLoading(false)
