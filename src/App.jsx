@@ -15,8 +15,10 @@ import ScrollReveal from "@/components/ScrollReveal";
 import WeatherBackground from "@/components/WeatherBackground";
 import GameButton from "@/components/GameButton";
 import { WeatherProvider } from "@/contexts/WeatherContext";
+import { MusicProvider } from "@/contexts/MusicContext";
 import ChatBot from "@/components/ChatBot";
 import GithubDrawer from "./components/GithubDrawer";
+import MusicPlayer from "./components/MusicPlayer"
 
 function App() {
   const [activeSection, setActiveSection] = useState("hero");
@@ -64,62 +66,66 @@ function App() {
   }, []);
 
   return (
-    <WeatherProvider>
-      <WeatherBackground>
-        <div className="min-h-screen relative">
-          {/* Scroll Monkey - Fixed left column */}
-          <GithubDrawer isOpen={isDrawerOpen} setIsOpen={setIsDrawerOpen} />
+    <MusicProvider>
+      <WeatherProvider>
+        <WeatherBackground>
+          <div className="min-h-screen relative">
 
-          <ChatBot isDrawerOpen={isDrawerOpen} />
+            <MusicPlayer />
+            {/* Scroll Monkey - Fixed left column */}
+            <GithubDrawer isOpen={isDrawerOpen} setIsOpen={setIsDrawerOpen} />
 
-          {/* VS Code Background */}
-          <CodeDecorations />
+            <ChatBot isDrawerOpen={isDrawerOpen} />
 
-          {/* Header Navigation */}
-          <Sidebar activeSection={activeSection} onNavigate={handleNavigate} />
+            {/* VS Code Background */}
+            <CodeDecorations />
 
-          {/* Mobile Navigation */}
-          <MobileNav
-            activeSection={activeSection}
-            onNavigate={handleNavigate}
-          />
+            {/* Header Navigation */}
+            <Sidebar activeSection={activeSection} onNavigate={handleNavigate} />
 
-          {/* Main Content - Add left padding for monkey column on desktop */}
-          <main className="pt-12 md:pl-24">
-            <Hero />
-            <ScrollReveal animation="fade-in-up">
-              <Introduce />
-            </ScrollReveal>
-            <ScrollReveal animation="fade-in-right" delay={100}>
-              <Experience />
-            </ScrollReveal>
-            <ScrollReveal animation="scale-in" delay={200}>
-              <Projects />
-            </ScrollReveal>
-            <ScrollReveal animation="fade-in-up" delay={150}>
-              <Education />
-            </ScrollReveal>
-            <ScrollReveal animation="fade-in-left" delay={100}>
-              <Skills />
-            </ScrollReveal>
-            <ScrollReveal animation="fade-in-up">
-              <Contact />
-            </ScrollReveal>
-          </main>
+            {/* Mobile Navigation */}
+            <MobileNav
+              activeSection={activeSection}
+              onNavigate={handleNavigate}
+            />
 
-          {/* Visitor Counter - Fixed top right, hidden on mobile */}
-          <div className="hidden sm:block fixed top-20 right-6 z-40">
-            <VisitorCounter />
+            {/* Main Content - Add left padding for monkey column on desktop */}
+            <main className="pt-12 md:pl-24">
+              <Hero />
+              <ScrollReveal animation="fade-in-up">
+                <Introduce />
+              </ScrollReveal>
+              <ScrollReveal animation="fade-in-right" delay={100}>
+                <Experience />
+              </ScrollReveal>
+              <ScrollReveal animation="scale-in" delay={200}>
+                <Projects />
+              </ScrollReveal>
+              <ScrollReveal animation="fade-in-up" delay={150}>
+                <Education />
+              </ScrollReveal>
+              <ScrollReveal animation="fade-in-left" delay={100}>
+                <Skills />
+              </ScrollReveal>
+              <ScrollReveal animation="fade-in-up">
+                <Contact />
+              </ScrollReveal>
+            </main>
+
+            {/* Visitor Counter - Fixed top right, hidden on mobile */}
+            <div className="hidden sm:block fixed top-20 right-6 z-40">
+              <VisitorCounter />
+            </div>
+
+            {/* Scroll to Top Button - Fixed bottom right */}
+            <ScrollToTop />
+
+            {/* Game Button - Fixed bottom right, above scroll to top */}
+            <GameButton />
           </div>
-
-          {/* Scroll to Top Button - Fixed bottom right */}
-          <ScrollToTop />
-
-          {/* Game Button - Fixed bottom right, above scroll to top */}
-          <GameButton />
-        </div>
-      </WeatherBackground>
-    </WeatherProvider>
+        </WeatherBackground>
+      </WeatherProvider>
+    </MusicProvider>
   );
 }
 
