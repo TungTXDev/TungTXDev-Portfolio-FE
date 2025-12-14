@@ -15,24 +15,32 @@ const Introduce = () => {
           <div className="grid md:grid-cols-3 gap-4">
             <Card className="glass-card border-white/10">
               <CardContent className="pt-6">
-                <div className="flex items-center gap-3">
-                  <div>
+                <div className="flex flex-col gap-4 md:flex-row md:items-center md:gap-6">
+
+                  {/* Date of Birth */}
+                  <div className="flex items-center gap-3">
                     <Calendar className="h-5 w-5 text-blue-400" />
+                    <div>
+                      <p className="text-sm text-white/40">Date of Birth</p>
+                      <p className="text-white/80 font-medium">22/02/2003</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm text-white/40">Date of Birth</p>
-                    <p className="text-white/80 font-medium">22/02/2003</p>
-                  </div>
-                  <div className="ml-4">
+
+                  {/* Location */}
+                  <div className="flex items-center gap-3">
                     <MapPin className="h-5 w-5 text-red-400" />
+                    <div>
+                      <p className="text-sm text-white/40">Location</p>
+                      <p className="text-white/80 font-medium">
+                        Long Bien, Hanoi, Vietnam
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm text-white/40">Location</p>
-                    <p className="text-white/80 font-medium">LongBien, Hanoi, Vietnam</p>
-                  </div>
+
                 </div>
               </CardContent>
             </Card>
+
 
             <Card className="glass-card border-white/10">
               <CardContent className="pt-6">
