@@ -1,5 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card'
-import { Target, Zap, Calendar, MapPin, GraduationCap, CheckCircle } from 'lucide-react'
+import { Target, Zap, Calendar, MapPin, GraduationCap, CheckCircle, Timer, TimerIcon } from 'lucide-react'
 
 const Introduce = () => {
   return (
@@ -22,6 +22,13 @@ const Introduce = () => {
                   <div>
                     <p className="text-sm text-white/40">Date of Birth</p>
                     <p className="text-white/80 font-medium">22/02/2003</p>
+                  </div>
+                  <div className="ml-4">
+                    <MapPin className="h-5 w-5 text-red-400" />
+                  </div>
+                  <div>
+                    <p className="text-sm text-white/40">Location</p>
+                    <p className="text-white/80 font-medium">LongBien, Hanoi, Vietnam</p>
                   </div>
                 </div>
               </CardContent>
@@ -54,16 +61,17 @@ const Introduce = () => {
             <Card className="glass-card border-white/10">
               <CardContent className="pt-6">
                 <div className="flex items-center gap-3">
+                  <Timer className="h-5 w-5 text-green-400" />
                   <div>
-                    <MapPin className="h-5 w-5 text-red-400" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-white/40">Location</p>
-                    <p className="text-white/80 font-medium">LongBien, Hanoi, Vietnam</p>
+                    <p className="text-sm text-white/40">Availability</p>
+                    <p className="text-green-400 font-medium">
+                      Full-time
+                    </p>
                   </div>
                 </div>
               </CardContent>
             </Card>
+
           </div>
 
           {/* Introduction */}
