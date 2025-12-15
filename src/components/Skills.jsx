@@ -37,7 +37,10 @@ const Skills = () => {
         { name: 'Postman', icon: 'postman/postman-original.svg' },
         { name: 'Figma', icon: 'figma/figma-original.svg' },
         { name: 'Docker', icon: 'docker/docker-original.svg' },
-        { name: 'Netlify', icon: 'netlify/netlify-original.svg' },
+        { name: 'Cloudinary', icon: 'cloudinary/cloudinary-original.svg' },
+        { name: 'Google OAuth', icon: 'google/google-original.svg' },
+        // { name: 'Google Cloud', icon: 'googlecloud/googlecloud-original.svg' },
+        // { name: 'Netlify', icon: 'netlify/netlify-original.svg' },
         { name: 'Vercel', icon: 'vercel/vercel-original.svg' }
       ]
     },
