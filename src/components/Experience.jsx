@@ -46,7 +46,7 @@ const Experience = () => {
         <div className="space-y-6">
           {experiences.map((exp, index) => (
             <Card key={index} className="glass-card border-white/10">
-              <CardHeader>
+              <CardHeader className="pb-2">
                 <div className="flex items-start gap-4">
                   {exp.logo && (
                     <div className="flex-shrink-0 w-16 h-16 bg-white rounded-lg overflow-hidden flex items-center justify-center">

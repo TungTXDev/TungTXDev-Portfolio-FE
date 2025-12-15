@@ -124,8 +124,8 @@ const Projects = () => {
     {
       name: "HTClinicHub System",
       description: "A digital healthcare platform in Vietnam that enables users to book medical appointments, access online consultations, and conveniently manage their medical records.",
-      tech: ["NodeJS (NestJS)", "ReactJS", "TypeScript", "MongoDB"],
-      tools: "Visual Studio Code, GitHub, Docker, Postman, PlantUML, Draw.io, Trello",
+      tech: ["NodeJS (NestJS)", "ReactJS (TailwindCSS + AntD)", "TypeScript", "MongoDB", "PostgreSQL"],
+      tools: "Visual Studio Code, GitHub, Docker, Postman, Cloudinary, PlantUML, Draw.io, Trello",
       role: "Full-stack Developer | Team size: 5",
       period: "Apr 2025 - Sep 2025",
       image: <Hospital className="h-10 w-10 text-blue-400" />,
@@ -160,7 +160,7 @@ const Projects = () => {
       name: "Tâm Giao",
       description: "A mental health platform that allows users to take psychological tests, receive counseling, book medical appointments, and access articles from leading psychology experts.",
       tech: ["NodeJS (ExpressJS)", "ReactJS (TailwindCSS + Shadcn/UI)", "TypeScript", "MongoDB"],
-      tools: "Visual Studio Code, GitHub, Postman, PlantUML, Draw.io, Trello",
+      tools: "Visual Studio Code, GitHub, Postman, Cloudinary, PlantUML, Draw.io, Trello",
       role: "Full-stack Developer | Team size: 4",
       period: "Jan 2025 - Apr 2025",
       image: <Brain className="h-10 w-10 text-blue-400" />,
@@ -190,7 +190,7 @@ const Projects = () => {
                 className="glass-card border-white/10 hover:border-white/20 transition-all cursor-pointer hover-lift"
                 onClick={() => setSelectedProject(project)}
               >
-                <CardHeader>
+                <CardHeader className="pb-1">
                   <div className="flex items-start justify-between mb-3">
                     <div className="text-4xl">{project.image}</div>
                     <div className="flex gap-2">
