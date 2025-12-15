@@ -212,7 +212,7 @@ const Hero = () => {
                 {/* Short Description */}
                 <p className="text-sm sm:text-base md:text-lg text-white/60 max-w-xl min-h-[4rem]">
                   <TypewriterText
-                    text="Fullstack Developer with 2+ years of hands-on experience in Node.js and React. Experienced in building both frontend and backend applications through practical projects and collaborative teamwork. Skilled in integrating REST APIs, developing end-to-end solutions, and contributing effectively to project deliverables."
+                    text="Fullstack Developer with over 1 year of hands-on experience in Node.js and React. Experienced in building both frontend and backend applications through practical projects and collaborative teamwork. Skilled in integrating REST APIs, developing end-to-end solutions, and contributing effectively to project deliverables."
                     delay={30}
                   />
                 </p>
