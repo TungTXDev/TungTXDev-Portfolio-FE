@@ -67,7 +67,7 @@ const Introduce = () => {
                 <div>
                   <p className="text-sm text-white/40">Development Experience</p>
                   <p className="text-blue-600 font-medium">
-                    2+ years experience Node.js, React
+                    Over 1 year experience Node.js, React
                   </p>
                 </div>
               </CardContent>
