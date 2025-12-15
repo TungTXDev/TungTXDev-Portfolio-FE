@@ -74,7 +74,7 @@ const Introduce = () => {
                     <p className="text-sm text-white/40">Availability</p>
                     <p className="text-green-400 font-medium">
                       Full-time
-                      <span className="text-white/80 font-medium">
+                      <span className="block md:inline text-white/80 font-medium">
                         {" "} (Flexible · Onsite / Remote)
                       </span>
                     </p>
