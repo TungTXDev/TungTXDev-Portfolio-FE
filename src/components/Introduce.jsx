@@ -1,5 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card'
-import { Target, Zap, Calendar, MapPin, GraduationCap, CheckCircle, Timer, TargetIcon, Code } from 'lucide-react'
+import { Zap, Calendar, MapPin, GraduationCap, CheckCircle, Timer, Code, TrendingUp, Brain } from 'lucide-react'
 
 const Introduce = () => {
   return (
@@ -16,7 +16,6 @@ const Introduce = () => {
             <Card className="glass-card border-white/10">
               <CardContent className="pt-6">
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:gap-6">
-
                   {/* Date of Birth */}
                   <div className="flex items-center gap-3">
                     <Calendar className="h-5 w-5 text-blue-400" />
@@ -30,13 +29,12 @@ const Introduce = () => {
                   <div className="flex items-center gap-3">
                     <MapPin className="h-5 w-5 text-red-500" />
                     <div>
-                      <p className="text-sm text-white/40">Location</p>
+                      <p className="text-sm text-white/40">Current Location</p>
                       <p className="text-white/80 font-medium">
                         Long Bien, Hanoi, Vietnam
                       </p>
                     </div>
                   </div>
-
                 </div>
               </CardContent>
             </Card>
@@ -48,18 +46,16 @@ const Introduce = () => {
                     <GraduationCap className="h-5 w-5 text-[#f37021]" />
                   </div>
                   <div>
-                    <p className="text-sm text-white/40">University</p>
+                    <p className="text-sm text-white/40">University Education</p>
                     <div className="flex items-center gap-2">
                       <p className="text-[#f37021] font-medium">
                         FPT Hanoi University
                       </p>
-                      <p className="flex items-center gap-1 text-xs text-green-400/80 mt-1">
-                        <CheckCircle className="w-3.5 h-3.5" />
+                      <p className="flex items-center gap-1 text-xs text-green-400/80 mt-1 font-medium">
+                        <CheckCircle className="w-3.5 h-3.5" strokeWidth={3} />
                         Graduated
                       </p>
-
                     </div>
-
                   </div>
                 </div>
               </CardContent>
@@ -69,7 +65,7 @@ const Introduce = () => {
               <CardContent className="pt-6 flex items-center gap-3">
                 <Code className="h-5 w-5 text-blue-600" />
                 <div>
-                  <p className="text-sm text-white/40">Experience</p>
+                  <p className="text-sm text-white/40">Development Experience</p>
                   <p className="text-blue-600 font-medium">
                     2+ years experience Node.js, React
                   </p>
@@ -80,9 +76,9 @@ const Introduce = () => {
             {/* Focus */}
             <Card className="glass-card border-white/10">
               <CardContent className="pt-6 flex items-center gap-3">
-                <TargetIcon className="h-5 w-5 text-red-500" />
+                <TrendingUp className="h-5 w-5 text-red-500" />
                 <div>
-                  <p className="text-sm text-white/40">Focus</p>
+                  <p className="text-sm text-white/40">Specialization Orientation</p>
                   <p className="text-white/80 font-medium">
                     Platform Engineering
                     {/* Dấu cho mobile / xuống dòng */}
@@ -102,7 +98,7 @@ const Introduce = () => {
                 <div className="flex items-center gap-3">
                   <Timer className="h-5 w-5 text-green-400" />
                   <div>
-                    <p className="text-sm text-white/40">Availability</p>
+                    <p className="text-sm text-white/40">Availability Time</p>
                     <p className="text-green-400 font-medium">
                       Full-time
                       <span className="block md:inline text-white/80 font-medium">
@@ -117,7 +113,7 @@ const Introduce = () => {
             <Card className="glass-card border-white/10">
               <CardContent className="pt-6">
                 <div className="flex items-center gap-3">
-                  <Zap className="h-5 w-5 text-purple-500" />
+                  <Brain className="h-5 w-5 text-purple-500" />
                   <div>
                     <p className="text-sm text-white/40">Learning Mindset</p>
                     <p className="text-purple-500 font-medium">
@@ -127,7 +123,6 @@ const Introduce = () => {
                 </div>
               </CardContent>
             </Card>
-
           </div>
 
           {/* Introduction */}
@@ -143,9 +138,8 @@ const Introduce = () => {
           <Card className="glass-card border-white/10">
             <CardContent className="pt-6">
               <div className="flex items-start gap-4">
-                {/* Icon đơn giản */}
                 <div className="flex items-center justify-center w-14 h-9 bg-white/10 rounded-full">
-                  <Target className="h-5 w-5 text-red-400" />
+                  <TrendingUp className="h-5 w-5 text-red-500" />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2 text-white">Career Goals</h3>
@@ -159,12 +153,10 @@ const Introduce = () => {
             </CardContent>
           </Card>
 
-
           {/* Strengths */}
           <Card className="glass-card border-white/10">
             <CardContent className="pt-6">
               <div className="flex items-start gap-4">
-                {/* Icon đơn giản */}
                 <div className="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full">
                   <Zap className="h-5 w-5 text-purple-500" />
                 </div>
