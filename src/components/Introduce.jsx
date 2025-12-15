@@ -129,7 +129,7 @@ const Introduce = () => {
           <Card className="glass-card border-white/10">
             <CardContent className="pt-6">
               <p className="text-lg text-white/60 leading-relaxed">
-                Fullstack Developer with 2+ years of hands-on experience in Node.js and React. Experienced in building both frontend and backend applications through practical projects and collaborative teamwork. Skilled in integrating REST APIs, developing end-to-end solutions, and contributing effectively to project deliverables.
+                Fullstack Developer with over 1 year of hands-on experience in Node.js and React. Experienced in building both frontend and backend applications through practical projects and collaborative teamwork. Skilled in integrating REST APIs, developing end-to-end solutions, and contributing effectively to project deliverables.
               </p>
             </CardContent>
           </Card>
