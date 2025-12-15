@@ -1,5 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card'
-import { Target, Zap, Calendar, MapPin, GraduationCap, CheckCircle, Timer } from 'lucide-react'
+import { Target, Zap, Calendar, MapPin, GraduationCap, CheckCircle, Timer, TargetIcon, Code } from 'lucide-react'
 
 const Introduce = () => {
   return (
@@ -12,7 +12,7 @@ const Introduce = () => {
 
         <div className="space-y-6">
           {/* Personal Info */}
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-3 gap-4">
             <Card className="glass-card border-white/10">
               <CardContent className="pt-6">
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:gap-6">
@@ -28,7 +28,7 @@ const Introduce = () => {
 
                   {/* Location */}
                   <div className="flex items-center gap-3">
-                    <MapPin className="h-5 w-5 text-red-400" />
+                    <MapPin className="h-5 w-5 text-red-500" />
                     <div>
                       <p className="text-sm text-white/40">Location</p>
                       <p className="text-white/80 font-medium">
@@ -40,7 +40,6 @@ const Introduce = () => {
                 </div>
               </CardContent>
             </Card>
-
 
             <Card className="glass-card border-white/10">
               <CardContent className="pt-6">
@@ -67,6 +66,34 @@ const Introduce = () => {
             </Card>
 
             <Card className="glass-card border-white/10">
+              <CardContent className="pt-6 flex items-center gap-3">
+                <Code className="h-5 w-5 text-blue-600" />
+                <div>
+                  <p className="text-sm text-white/40">Experience</p>
+                  <p className="text-blue-600 font-medium">
+                    2+ years experience Node.js, React
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Focus */}
+            <Card className="glass-card border-white/10">
+              <CardContent className="pt-6 flex items-center gap-3">
+                <TargetIcon className="h-5 w-5 text-red-500" />
+                <div>
+                  <p className="text-sm text-white/40">Focus</p>
+                  <p className="text-white/80 font-medium">
+                    Platform Engineering ·
+                    <span className="sm:whitespace-nowrap block sm:inline">
+                      Backend Development
+                    </span>
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="glass-card border-white/10">
               <CardContent className="pt-6">
                 <div className="flex items-center gap-3">
                   <Timer className="h-5 w-5 text-green-400" />
@@ -86,10 +113,10 @@ const Introduce = () => {
             <Card className="glass-card border-white/10">
               <CardContent className="pt-6">
                 <div className="flex items-center gap-3">
-                  <Zap className="h-5 w-5 text-purple-400" />
+                  <Zap className="h-5 w-5 text-purple-500" />
                   <div>
                     <p className="text-sm text-white/40">Learning Mindset</p>
-                    <p className="text-purple-400 font-medium">
+                    <p className="text-purple-500 font-medium">
                       Open to New Tech Stacks
                     </p>
                   </div>
@@ -103,10 +130,7 @@ const Introduce = () => {
           <Card className="glass-card border-white/10">
             <CardContent className="pt-6">
               <p className="text-lg text-white/60 leading-relaxed">
-                Backend Developer with hands-on 2 years of experience in Node.js, with practical
-                experience designing and implementing server-side applications gained through
-                academic studies and real projects. Collaborated in professional team environments
-                and demonstrated organizational skills while contributing to key deliverables.
+               Fullstack Developer with 2+ years of hands-on experience in Node.js and React. Experienced in building both frontend and backend applications through practical projects and collaborative teamwork. Skilled in integrating REST APIs, developing end-to-end solutions, and contributing effectively to project deliverables.
               </p>
             </CardContent>
           </Card>
@@ -115,8 +139,9 @@ const Introduce = () => {
           <Card className="glass-card border-white/10">
             <CardContent className="pt-6">
               <div className="flex items-start gap-4">
-                <div className="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full">
-                  <Target className="h-5 w-5 text-white" />
+                {/* Icon đơn giản */}
+                <div className="flex items-center justify-center w-14 h-9 bg-white/10 rounded-full">
+                  <Target className="h-5 w-5 text-red-400" />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2 text-white">Career Goals</h3>
@@ -137,7 +162,7 @@ const Introduce = () => {
               <div className="flex items-start gap-4">
                 {/* Icon đơn giản */}
                 <div className="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full">
-                  <Zap className="h-5 w-5 text-white" />
+                  <Zap className="h-5 w-5 text-purple-500" />
                 </div>
 
                 <div>
