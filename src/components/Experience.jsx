@@ -47,10 +47,14 @@ const Experience = () => {
           {experiences.map((exp, index) => (
             <Card key={index} className="glass-card border-white/10">
               <CardHeader>
-                <div className="flex items-start gap-4 mb-4">
+                <div className="flex items-start gap-4">
                   {exp.logo && (
-                    <div className="flex-shrink-0 w-16 h-16 bg-white rounded-lg flex items-center justify-center">
-                      <img src={exp.logo} alt={exp.company} className="w-full h-full object-contain" />
+                    <div className="flex-shrink-0 w-16 h-16 bg-white rounded-lg overflow-hidden flex items-center justify-center">
+                      <img
+                        src={exp.logo}
+                        alt={exp.company}
+                        className="w-full h-full object-contain"
+                      />
                     </div>
                   )}
                   <div className="flex-1">
@@ -61,16 +65,17 @@ const Experience = () => {
                         <span>{exp.period}</span>
                       </div>
                     </div>
-                    <CardTitle className="text-white mb-1">{exp.role}</CardTitle>
+                    <CardTitle className="text-white mb-0.5">{exp.role}</CardTitle>
                     <CardDescription className="text-base text-white/60">{exp.company}</CardDescription>
                   </div>
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-white/60 mb-4">{exp.description}</p>
-
-                <div className="mb-4">
-                  <p className="font-medium mb-2 text-white/80">Responsibilities & Achievements:</p>
+                <p className="text-white/60 mb-2">
+                  {exp.description}
+                </p>
+                <div className="mb-1">
+                  <p className="font-medium text-white/80">Responsibilities & Achievements:</p>
                   <ul className="space-y-1 text-white/60 text-sm">
                     {exp.achievements.map((achievement, i) => (
                       <li key={i}>• {achievement}</li>
@@ -79,7 +84,7 @@ const Experience = () => {
                 </div>
 
                 {exp.technologies && (
-                  <div className="mb-2">
+                  <div>
                     <span className="font-medium text-white/80 text-sm">Technologies: </span>
                     <span className="text-white/60 text-sm">{exp.technologies}</span>
                   </div>
