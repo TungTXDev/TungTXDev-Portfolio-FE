@@ -138,8 +138,8 @@ const Introduce = () => {
           <Card className="glass-card border-white/10">
             <CardContent className="pt-6">
               <div className="flex items-start gap-4">
-                <div className="flex items-center justify-center w-14 h-9 bg-white/10 rounded-full">
-                  <TrendingUp className="h-5 w-5 text-red-500" />
+                <div className="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full flex-shrink-0">
+                  <TrendingUp className="h-6 w-6 text-red-500" />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold mb-2 text-white">Career Goals</h3>
@@ -157,10 +157,9 @@ const Introduce = () => {
           <Card className="glass-card border-white/10">
             <CardContent className="pt-6">
               <div className="flex items-start gap-4">
-                <div className="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full">
-                  <Zap className="h-5 w-5 text-purple-500" />
+                <div className="flex items-center justify-center w-10 h-10 bg-white/10 rounded-full flex-shrink-0">
+                  <Zap className="h-6 w-6 text-purple-600" />
                 </div>
-
                 <div>
                   <h3 className="text-xl font-semibold mb-2 text-white">Key Strengths</h3>
                   <ul className="space-y-2 text-white/60">
