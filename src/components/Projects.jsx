@@ -144,7 +144,7 @@ const Projects = () => {
       name: "PLANUS MOBILE APP",
       description: "AI-powered travel planner that analyzes your preferences, budget, and weather to create a personalized travel schedule.",
       tech: ["NodeJS (NestJS)", "React Native", "TypeScript", "MongoDB"],
-      tools: "Visual Studio Code, GitHub, Postman, PlantUML, Draw.io, Trello, Expo",
+      tools: "Visual Studio Code, GitHub, Postman, Cloudinary, PlantUML, Draw.io, Trello, Expo",
       role: "Front-End Developer | Team size: 3",
       period: "Jan 2025 - Apr 2025",
       image: <Plane className="h-10 w-10 text-blue-400" />,
