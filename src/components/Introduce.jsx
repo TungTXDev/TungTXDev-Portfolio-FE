@@ -41,22 +41,38 @@ const Introduce = () => {
 
             <Card className="glass-card border-white/10">
               <CardContent className="pt-6">
-                <div className="flex items-center gap-3">
-                  <div>
+                <div className="flex flex-col gap-4
+                    md:flex-row md:flex-nowrap md:items-center md:justify-between">
+                  <div className="flex items-center gap-3">
                     <GraduationCap className="h-5 w-5 text-[#f37021]" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-white/40">University Education</p>
-                    <div className="flex items-center gap-2">
-                      <p className="text-[#f37021] font-medium">
-                        FPT Hanoi University
+                    <div>
+                      <p className="text-sm text-white/40 whitespace-nowrap">
+                        University Education
                       </p>
-                      <p className="flex items-center gap-1 text-xs text-green-400/80 mt-1 font-medium">
-                        <CheckCircle className="w-3.5 h-3.5" strokeWidth={3} />
-                        Graduated
+                      <div className="flex items-center gap-2">
+                        <p className="text-[#f37021] font-medium whitespace-nowrap">
+                          FPT Hanoi University
+                        </p>
+                        <p className="flex items-center mt-1 text-xs text-green-400/80 font-medium">
+                          <CheckCircle className="w-3.5 h-3.5" strokeWidth={3} />
+                          Graduated
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* RIGHT: Language */}
+                  <div className="flex items-center gap-3 pl-8 md:pl-0">
+                    <div>
+                      <p className="text-sm text-white/40 whitespace-nowrap">
+                        Language
+                      </p>
+                      <p className="text-white/80 font-medium whitespace-nowrap">
+                        English: Basic
                       </p>
                     </div>
                   </div>
+
                 </div>
               </CardContent>
             </Card>
@@ -67,7 +83,7 @@ const Introduce = () => {
                 <div>
                   <p className="text-sm text-white/40">Development Experience</p>
                   <p className="text-blue-600 font-medium">
-                    Over 1 year experience Node.js, React
+                    Over 1 year with Node.js, React
                   </p>
                 </div>
               </CardContent>
