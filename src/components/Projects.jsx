@@ -244,7 +244,7 @@ const Projects = () => {
                             project.image
                           )}
                         </div>
-                        <CardTitle className="text-white text-lg -mt-1">
+                        <CardTitle className="text-white text-lg -mt-1 break-words">
                           {project.name}
                         </CardTitle>
                       </div>
@@ -438,10 +438,10 @@ const Projects = () => {
               )}
 
               {/* Links */}
-              <div className="flex gap-3 pt-4 border-t border-white/10 flex-wrap sm:flex-nowrap">
+              <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-white/10">
                 {selectedProject.github && (
                   <Button
-                    className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-4 py-3 flex-1 justify-center min-w-0"
+                    className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-4 py-3 sm:flex-1 justify-center min-w-0"
                     asChild
                   >
                     <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
@@ -452,7 +452,7 @@ const Projects = () => {
                 )}
                 {selectedProject.demo && (
                   <Button
-                    className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-3 flex-1 justify-center min-w-0"
+                    className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-3 sm:flex-1 justify-center min-w-0"
                     asChild
                   >
                     <a href={selectedProject.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
