@@ -293,9 +293,9 @@ const Projects = () => {
                       <div>
                         <p className="text-xs font-medium text-white/70">
                           <span className="font-semibold text-white/90">
-                            {project.name === "LookAI" ? "Link tải CH Play:" :
-                              project.name === "PLANUS MOBILE APP" ? "Link tải Google Drive:" :
-                                "Link tải:"}
+                            {project.name === "LookAI MOBILE APP" ? "Download on CH Play:" :
+                              project.name === "PLANUS MOBILE APP" ? "Download on Google Drive:" :
+                                "Download on:"}
                           </span> <a
                             href={project.playStoreLink}
                             target="_blank"
