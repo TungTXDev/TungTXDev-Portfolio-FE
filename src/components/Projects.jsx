@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { ExternalLink, Github, User, X, Hospital, Plane, Brain } from 'lucide-react'
+import { ExternalLink, Github, User, X, Hospital, Plane, Brain, Sparkles } from 'lucide-react'
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null)
@@ -129,6 +129,7 @@ const Projects = () => {
       role: "Full-stack Developer | Team size: 5",
       period: "Apr 2025 - Sep 2025",
       image: <Hospital className="h-10 w-10 text-blue-400" />,
+      logo: "/images/HtClinicHub.png",
       responsibilities: [
         "Analyzed requirements from the client (Phong Linh Company) to define requirements, use cases, and class diagrams",
         "Built features for creating and managing personal and family health profiles",
@@ -141,6 +142,28 @@ const Projects = () => {
       client: "Phong Linh Company – commissioned the project and piloted real-world clinic services"
     },
     {
+      name: "LookAI MOBILE APP",
+      description: "A personal wardrobe management platform that helps users organize their clothing, create outfits, plan daily wear schedules, get AI-powered outfit suggestions, and receive professional stylist consultations.",
+      tech: ["NodeJS (NestJS)", "React Native", "TypeScript", "MongoDB"],
+      tools: "Visual Studio Code, GitHub, Postman, Cloudinary, PlantUML, Draw.io, Trello, Expo",
+      role: "Front-End Developer | Team size: 3",
+      period: "Jan 2026 - Mar 2026",
+      image: <Sparkles className="h-10 w-10 text-blue-400" />,
+      logo: "/images/lookai.png",
+      responsibilities: [
+        "Developed user interfaces for wardrobe management, allowing users to catalog and organize their clothing items",
+        "Built outfit creation features with drag-and-drop functionality for mixing and matching clothing pieces",
+        "Implemented daily wear planning system with calendar integration for scheduling outfits",
+        "Created AI-powered outfit recommendation engine that suggests combinations based on weather, occasion, and personal style",
+        "Designed stylist consultation module for professional fashion advice and personalized styling sessions"
+      ],
+      github: "https://github.com/TungTXDev/LookAI",
+      demo: "https://play.google.com/store/apps/details?id=com.lookai.app&pcampaignid=web_share&pli=1",
+      architecture: "Mobile-first design with cloud storage integration",
+      client: "Personal fashion management solution for style-conscious users",
+      playStoreLink: "https://play.google.com/store/apps/details?id=com.lookai.app&pcampaignid=web_share&pli=1"
+    },
+    {
       name: "PLANUS MOBILE APP",
       description: "AI-powered travel planner that analyzes your preferences, budget, and weather to create a personalized travel schedule.",
       tech: ["NodeJS (NestJS)", "React Native", "TypeScript", "MongoDB"],
@@ -148,22 +171,26 @@ const Projects = () => {
       role: "Front-End Developer | Team size: 3",
       period: "Jan 2025 - Apr 2025",
       image: <Plane className="h-10 w-10 text-blue-400" />,
+      logo: "/images/planus.png",
       responsibilities: [
         "Detected location and real-time weather updates to optimize travel routes and activities",
         "Developed user interfaces in React Native for creating, editing, and viewing travel plans interactively",
         "Implemented trip tracking features to monitor travel progress and display route summaries",
         "Built a review and feedback module for users to evaluate destinations and itineraries"
       ],
-      github: "https://github.com/TungTXDev/PLANUS_FE"
+      github: "https://github.com/TungTXDev/PLANUS_FE",
+      demo: "https://drive.google.com/drive/folders/1idBNroD68TlnMiicvGo0TxpHcvkRZlUy?usp=sharing",
+      playStoreLink: "https://drive.google.com/drive/folders/1idBNroD68TlnMiicvGo0TxpHcvkRZlUy?usp=sharing"
     },
     {
-      name: "Tâm Giao",
+      name: "Tâm Giao Web",
       description: "A mental health platform that allows users to take psychological tests, receive counseling, book medical appointments, and access articles from leading psychology experts.",
       tech: ["NodeJS (ExpressJS)", "ReactJS (TailwindCSS + Shadcn/UI)", "TypeScript", "MongoDB"],
       tools: "Visual Studio Code, GitHub, Postman, Cloudinary, PlantUML, Draw.io, Trello",
       role: "Full-stack Developer | Team size: 4",
       period: "Jan 2025 - Apr 2025",
       image: <Brain className="h-10 w-10 text-blue-400" />,
+      logo: "/images/TamGiao.png",
       responsibilities: [
         "Collaborated with the team to brainstorm and refine system ideas, and clarified business requirements",
         "Developed features for users to take psychological assessments to identify the root causes of mental health issues",
@@ -192,7 +219,36 @@ const Projects = () => {
               >
                 <CardHeader className="pb-1">
                   <div className="flex items-start justify-between mb-3">
-                    <div className="text-4xl">{project.image}</div>
+                    <div className="flex items-start gap-3">
+                      {(project.logo || typeof project.image === 'string') && (
+                        <div className="flex-shrink-0 w-16 h-16 bg-white rounded-lg overflow-hidden flex items-center justify-center">
+                          <img
+                            src={project.logo || project.image}
+                            alt={project.name}
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                      )}
+
+                      <div className="flex flex-col items-start justify-start">
+                        <div className="text-4xl mb-1">
+                          {typeof project.image === 'string' ? (
+                            <div className="w-10 h-10 bg-white rounded-lg overflow-hidden flex items-center justify-center">
+                              <img
+                                src={project.image}
+                                alt={project.name}
+                                className="w-full h-full object-contain"
+                              />
+                            </div>
+                          ) : (
+                            project.image
+                          )}
+                        </div>
+                        <CardTitle className="text-white text-lg -mt-1">
+                          {project.name}
+                        </CardTitle>
+                      </div>
+                    </div>
                     <div className="flex gap-2">
                       {project.github && (
                         <Button
@@ -223,7 +279,6 @@ const Projects = () => {
                     </div>
                   </div>
                   <div className="flex items-center justify-between mb-2">
-                    <CardTitle className="text-white text-lg">{project.name}</CardTitle>
                     <span className="text-xs text-white/50">{project.period}</span>
                   </div>
                   <CardDescription className="text-white/60 text-sm mb-3 line-clamp-2">{project.description}</CardDescription>
@@ -234,6 +289,28 @@ const Projects = () => {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
+                    {project.playStoreLink && (
+                      <div>
+                        <p className="text-xs font-medium text-white/70">
+                          <span className="font-semibold text-white/90">
+                            {project.name === "LookAI" ? "Link tải CH Play:" :
+                              project.name === "PLANUS MOBILE APP" ? "Link tải Google Drive:" :
+                                "Link tải:"}
+                          </span> <a
+                            href={project.playStoreLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-400 hover:text-blue-300 underline font-medium"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            {project.name === "LookAI" ? "LookAI App" :
+                              project.name === "PLANUS MOBILE APP" ? "PLANUS MOBILE APP" :
+                                `${project.name}`}
+                          </a>
+                        </p>
+                      </div>
+                    )}
+
                     <div>
                       <p className="text-xs font-medium mb-2 text-white/70">Technologies:</p>
                       <div className="flex flex-wrap gap-1.5">
@@ -245,6 +322,7 @@ const Projects = () => {
                         )}
                       </div>
                     </div>
+
                   </div>
                 </CardContent>
               </Card>
@@ -273,7 +351,19 @@ const Projects = () => {
                 <button className="w-3 h-3 rounded-full bg-[#28c840] hover:bg-[#28c840]/80" />
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-4xl">{selectedProject.image}</span>
+                <div className="flex-shrink-0 w-10 h-10 bg-white rounded-lg overflow-hidden flex items-center justify-center">
+                  {selectedProject.logo || typeof selectedProject.image === 'string' ? (
+                    <img
+                      src={selectedProject.logo || selectedProject.image}
+                      alt={selectedProject.name}
+                      className="w-full h-full object-contain"
+                    />
+                  ) : (
+                    <div className="text-blue-400">
+                      {selectedProject.image}
+                    </div>
+                  )}
+                </div>
                 <h3 className="text-white font-semibold">{selectedProject.name}</h3>
               </div>
               <button className="text-white/60 hover:text-white" onClick={handleClose}>
@@ -348,26 +438,29 @@ const Projects = () => {
               )}
 
               {/* Links */}
-              <div className="flex gap-3 pt-4 border-t border-white/10 flex-wrap">
+              <div className="flex gap-3 pt-4 border-t border-white/10 flex-wrap sm:flex-nowrap">
                 {selectedProject.github && (
                   <Button
-                    className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3 min-w-[150px] justify-center"
+                    className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-4 py-3 flex-1 justify-center min-w-0"
                     asChild
                   >
                     <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                       <Github className="h-4 w-4" />
-                      View on GitHub
+                      <span className="truncate">View on GitHub</span>
                     </a>
                   </Button>
                 )}
                 {selectedProject.demo && (
                   <Button
-                    className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 min-w-[150px] justify-center"
+                    className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-3 flex-1 justify-center min-w-0"
                     asChild
                   >
                     <a href={selectedProject.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                       <ExternalLink className="h-4 w-4" />
-                      Live Demo
+                      <span className="truncate">
+                        {selectedProject.demo.includes('play.google.com') ? 'Download on CH Play' :
+                          selectedProject.demo.includes('drive.google.com') ? 'View on Google Drive' : 'Live Demo'}
+                      </span>
                     </a>
                   </Button>
                 )}
